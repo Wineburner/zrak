@@ -1,26 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using zrak.Models;
+using zrak.Services;
 
 namespace zrak.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IHelloService _helloService;
+        public HomeController(ILogger<HomeController> logger, IHelloService helloService)
         {
             _logger = logger;
+            _helloService = helloService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_helloService.GetHello());
         }
 
         public IActionResult Privacy()
