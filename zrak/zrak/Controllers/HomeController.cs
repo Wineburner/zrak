@@ -21,6 +21,11 @@ namespace zrak.Controllers
             return View(_helloService.GetHello());
         }
 
+        public IActionResult BlogView() 
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
