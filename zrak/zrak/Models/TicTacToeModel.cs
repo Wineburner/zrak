@@ -2,6 +2,6 @@
 {
     public class TicTacToeModel
     {
-        public string Greet { get; set; }
+        public string Board { get; set; }
     }
 }

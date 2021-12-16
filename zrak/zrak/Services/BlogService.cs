@@ -8,7 +8,7 @@ namespace zrak.Services
         {
             return new BlogModel()
             {
-                Greet = "Blogs"
+                Blog = "Blogs"
             };
         }
     }

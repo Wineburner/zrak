@@ -8,7 +8,7 @@ namespace zrak.Services
         {
             return new TicTacToeModel
             {
-                Greet = "Tic-Tac-Toe"
+                Board = "Tic-Tac-Toe"
             };
         }
     }
