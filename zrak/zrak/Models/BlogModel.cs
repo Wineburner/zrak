@@ -2,6 +2,6 @@
 {
     public class BlogModel
     {
-        public string Blog { get; set; }
+        public string Blogs { get; set; }
     }
 }

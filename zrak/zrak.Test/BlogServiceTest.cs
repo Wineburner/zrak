@@ -12,7 +12,7 @@ namespace zrak.Test
 
             var result = service.GetBlog();
 
-            Assert.Equal("Blogs", result.Blog);
+            Assert.Equal("Blogs", result.Blogs);
 
         }
     }
