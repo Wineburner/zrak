@@ -12,7 +12,7 @@ namespace zrak.Test
 
             var result = service.GetGame();
 
-            Assert.Equal("Tic", result.Board);
+            Assert.Equal("Tic-Tac-Toe", result.Board);
 
         }
     }
