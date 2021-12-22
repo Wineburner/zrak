@@ -23,7 +23,7 @@ namespace zrak.Controllers
         public IActionResult AddPost([FromForm] BlogModel blogModel) 
         {
             _blogService.AddBlogPost(blogModel);
-            return View();
+            return View("BlogView", _blogService.GetBlog());
         }
 
         [HttpGet]
