@@ -4,6 +4,8 @@ namespace zrak.Services
 {
     public interface IBlogService
     {
-        BlogModel GetBlog();
+        BlogListModel GetBlog();
+
+        void AddBlogPost(BlogModel blogModel);
     }
 }

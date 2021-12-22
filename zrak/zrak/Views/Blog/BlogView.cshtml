@@ -1,11 +1,12 @@
-﻿@model zrak.Models.BlogModel
+﻿@model zrak.Models.BlogListModel
 @{
     ViewData["Title"] = "Blogs";
 }
 
 <div class="text-center">
-    <blogModel>
+    <blogListModel>
         @Model.Blogs
-    </blogModel>
+        <a asp-action="AddPost" asp-controller="Blog">Add Post</a>
+    </blogListModel>
 </div>
 
