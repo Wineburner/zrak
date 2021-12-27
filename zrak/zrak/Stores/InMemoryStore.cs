@@ -52,5 +52,10 @@ namespace zrak.Stores
             found.Title = blogStoreModel.Title;
             found.Body = blogStoreModel.Body;
         }
+
+        public List<BlogStoreModel> List() 
+        {
+            return _blogStoreModel;
+        }
     }
 }

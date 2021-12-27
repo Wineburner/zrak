@@ -17,15 +17,16 @@ namespace zrak.Services
         {
             return new BlogListModel()
             {
-                Blogs = "Blogs"
+                Blogs = "Blogs",
+                List = _blogStore.List()
             };
         }
 
         public void AddBlogPost(BlogModel blogModel) 
         {
             _blogStore.Create(new BlogStoreModel { 
-               Title = blogModel.Title,
-               Body = blogModel.Body,
+                Title = blogModel.Title,
+                Body = blogModel.Body,
             });
         }
     }

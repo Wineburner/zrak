@@ -12,5 +12,6 @@ namespace zrak.Stores
         BlogStoreModel Read(Guid id);
         void Update(BlogStoreModel blogStoreModel);
         void Delete(Guid id);
+        public List<BlogStoreModel> List();
     }
 }

@@ -7,6 +7,13 @@
     <blogListModel>
         @Model.Blogs
         <a asp-action="AddPost" asp-controller="Blog">Add Post</a>
+
+        @if (Model.List != null)
+        {
+            @foreach (var x in @Model.List)
+            { <li>@x.Title</li> }
+        }
+
     </blogListModel>
 </div>
 
