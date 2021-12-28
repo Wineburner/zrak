@@ -31,5 +31,10 @@ namespace zrak.Controllers
         {
             return View();
         }
+
+        public IActionResult ViewPost() 
+        {
+            return View();
+        }
     }
 }
