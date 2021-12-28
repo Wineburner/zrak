@@ -1,4 +1,5 @@
-﻿using zrak.Models;
+﻿using System;
+using zrak.Models;
 
 namespace zrak.Services
 {
@@ -7,5 +8,7 @@ namespace zrak.Services
         BlogListModel GetBlog();
 
         void AddBlogPost(BlogModel blogModel);
+
+        BlogModel ReadBlogPost(string id);
     }
 }

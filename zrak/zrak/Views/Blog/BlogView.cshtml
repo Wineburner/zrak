@@ -5,19 +5,17 @@
 
 <div class="text-center">
     <blogListModel>
-        @Model.Blogs
         <a asp-action="AddPost" asp-controller="Blog">Add Post</a>
 
-        @if (Model.List != null)
+        @if (Model.Blogs != null)
         {
-            @foreach (var x in @Model.List)
-            { 
-                <li><a asp-action="ViewPost" asp-controller="Blog">
-                    @x.Title
-                </a></li> 
+            @foreach (var x in @Model.Blogs)
+            {
+                <li>
+                    <a asp-action="ViewPost" asp-controller="Blog" asp-route-id="@x.Id"> @x.Title</a>
+                </li>
             }
         }
-
     </blogListModel>
 </div>
 

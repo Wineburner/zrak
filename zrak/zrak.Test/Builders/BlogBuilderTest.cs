@@ -23,5 +23,24 @@ namespace zrak.Test.Builders
             Assert.Equal(title, result.Title);
             Assert.Equal(body, result.Body);
         }
+
+        [Fact]
+        public void Should_Build_BlogModel_From_BlogStoreModel_Successful()
+        {
+            var title = "ods vdf dde";
+            var body = "Bacon and Eggs";
+            var initModel = new BlogStoreModel
+            {
+                Title = title,
+                Body = body
+            };
+            var builder = new BlogBuilder();
+
+            var result = builder.Build(initModel);
+
+            Assert.Equal(title, result.Title);
+            Assert.Equal(body, result.Body);
+        }
+
     }
 }

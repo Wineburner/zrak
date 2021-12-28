@@ -1,6 +1,8 @@
 ﻿using zrak.Models;
 using zrak.Stores;
 using zrak.Builders;
+using System;
+using System.Linq;
 
 namespace zrak.Services
 {
@@ -19,14 +21,19 @@ namespace zrak.Services
         {
             return new BlogListModel()
             {
-                Blogs = "Blogs",
-                List = _blogStore.GetAllBlogs()
+                Blogs = _blogStore.GetAllBlogs().Select(x => _blogBuilder.Build(x))
             };
         }
 
         public void AddBlogPost(BlogModel blogModel) 
         {
             _blogStore.Create(_blogBuilder.Build(blogModel));
+        }
+
+        public BlogModel ReadBlogPost(string id) 
+        {
+            var blogStore = _blogStore.Read(Guid.Parse(id));
+            return _blogBuilder.Build(blogStore);
         }
     }
 }

@@ -12,5 +12,15 @@ namespace zrak.Builders
                 Body = blogModel.Body,
             };
         }
+
+        public BlogModel Build(BlogStoreModel blogStoreModel) 
+        {
+            return new BlogModel
+            {
+                Id = blogStoreModel.Id.ToString(),
+                Title = blogStoreModel.Title,
+                Body = blogStoreModel.Body
+            };
+        }
     }
 }
