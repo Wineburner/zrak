@@ -11,9 +11,10 @@
         {
             @foreach (var x in @Model.Blogs)
             {
-                <li>
-                    <a asp-action="ViewPost" asp-controller="Blog" asp-route-id="@x.Id"> @x.Title</a>
-                </li>
+    <li>
+        <a asp-action="ViewPost" asp-controller="Blog" asp-route-id="@x.Id"> @x.Title</a>
+        <a asp-action="EditPost" asp-controller="Blog" asp-route-id="@x.Id">Edit</a>
+    </li>
             }
         }
     </blogListModel>

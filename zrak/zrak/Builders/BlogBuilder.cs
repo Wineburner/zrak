@@ -1,4 +1,5 @@
-﻿using zrak.Models;
+﻿using System;
+using zrak.Models;
 
 namespace zrak.Builders
 {
@@ -20,6 +21,16 @@ namespace zrak.Builders
                 Id = blogStoreModel.Id.ToString(),
                 Title = blogStoreModel.Title,
                 Body = blogStoreModel.Body
+            };
+        }
+
+        public BlogStoreModel BuildId(BlogModel blogModel)
+        {
+            return new BlogStoreModel
+            {
+                Id = Guid.Parse(blogModel.Id),
+                Title = blogModel.Title,
+                Body = blogModel.Body,
             };
         }
     }

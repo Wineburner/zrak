@@ -35,5 +35,10 @@ namespace zrak.Services
             var blogStore = _blogStore.Read(Guid.Parse(id));
             return _blogBuilder.Build(blogStore);
         }
+
+        public void EditBlogPost(BlogModel blogModel) 
+        {
+            _blogStore.Update(_blogBuilder.BuildId(blogModel));
+        }
     }
 }

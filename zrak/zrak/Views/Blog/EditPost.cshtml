@@ -2,11 +2,11 @@
 @model zrak.Models.BlogModel
 
 <form method="post">
+    <input type="hidden" readonly asp-for="Id" />
     Title:
-    <input asp-for="Title"/>
+    <input asp-for="Title" />
     <br />
     Body:
     <input asp-for="Body" />
-    <input type="submit"/>
+    <input type="submit" />
 </form>
-
