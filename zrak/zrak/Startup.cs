@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using zrak.Builders;
 using zrak.Services;
 using zrak.Stores;
 
@@ -28,6 +25,7 @@ namespace zrak
             services.AddSingleton<IBlogService, BlogService>();
             services.AddSingleton<IHelloService, HelloService>();
             services.AddSingleton<ITicTacToeService, TicTacToeService>();
+            services.AddSingleton<IBlogBuilder, BlogBuilder>();
             services.AddControllersWithViews();
         }
 
