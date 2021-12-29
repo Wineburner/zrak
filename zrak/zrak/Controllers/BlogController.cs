@@ -38,5 +38,18 @@ namespace zrak.Controllers
         {
             return View(_blogService.ReadBlogPost(id));
         }
+
+        [HttpPost]
+        public IActionResult EditPost([FromForm] BlogModel blogModel) 
+        {
+            _blogService.EditBlogPost(blogModel);
+            return View("BlogView", _blogService.GetBlog());
+        }
+
+        [HttpGet]
+        public IActionResult EditPost(string id) 
+        {
+            return View(_blogService.ReadBlogPost(id));
+        }
     }
 }
