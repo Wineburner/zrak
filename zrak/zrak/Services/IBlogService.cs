@@ -10,5 +10,7 @@ namespace zrak.Services
         void AddBlogPost(BlogModel blogModel);
 
         BlogModel ReadBlogPost(string id);
+
+        void EditBlogPost(BlogModel blogModel);
     }
 }

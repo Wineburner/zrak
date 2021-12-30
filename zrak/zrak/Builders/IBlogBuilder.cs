@@ -6,5 +6,6 @@ namespace zrak.Builders
     {
         BlogStoreModel Build(BlogModel blogModel);
         BlogModel Build(BlogStoreModel blogStoreModel);
+        BlogStoreModel BuildId(BlogModel blogModel);
     }
 }
