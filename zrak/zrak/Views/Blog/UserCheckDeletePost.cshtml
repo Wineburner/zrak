@@ -1,0 +1,7 @@
+﻿@model zrak.Models.BlogModel
+
+<p>Are you sure you want to delete?</p>
+<br />
+<a asp-action="DeletePost" asp-controller="Blog" asp-route-id="@Model.Id">Yes</a>
+<br />
+<a asp-action="BlogView" asp-controller="Blog">No</a>

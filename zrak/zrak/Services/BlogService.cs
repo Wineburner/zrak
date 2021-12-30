@@ -38,7 +38,12 @@ namespace zrak.Services
 
         public void EditBlogPost(BlogModel blogModel) 
         {
-            _blogStore.Update(_blogBuilder.BuildId(blogModel));
+            _blogStore.Update(_blogBuilder.Build(blogModel));
+        }
+
+        public void DeleteBlogPost(string id) 
+        {
+            _blogStore.Delete(Guid.Parse(id));
         }
     }
 }

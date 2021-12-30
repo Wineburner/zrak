@@ -51,5 +51,16 @@ namespace zrak.Controllers
         {
             return View(_blogService.ReadBlogPost(id));
         }
+
+        public IActionResult DeletePost(string id) 
+        {
+            _blogService.DeleteBlogPost(id);
+            return View("BlogView", _blogService.GetBlog());
+        }
+
+        public IActionResult UserCheckDeletePost(string id) 
+        {
+            return View(_blogService.ReadBlogPost(id));
+        }
     }
 }
