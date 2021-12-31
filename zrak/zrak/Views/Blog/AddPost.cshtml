@@ -1,11 +1,17 @@
 ﻿@model zrak.Models.BlogModel
 
-<form method="post">
+<form method="post" class="text-center">
+    <p class="alert alert-primary text-center">Enter the Title and the Body of the Post</p>
+    <br />
     Title:
-    <input asp-for="Title"/>
+    <input asp-for="Title" />
+    <br />
     <br />
     Body:
-    <input asp-for="Body" />
-    <input type="submit"/>
+    <textarea rows="6" cols="50" input asp-for="Body"></textarea>
+    <br />
+    <br />
+    <input type="submit" class="btn btn-primary" />
+    <a asp-action="BlogView" asp-controller="Blog" class="btn btn-secondary">Back</a>
 </form>
 

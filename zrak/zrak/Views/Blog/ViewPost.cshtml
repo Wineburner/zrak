@@ -1,8 +1,17 @@
 ﻿@model zrak.Models.BlogModel
 
+<br />
 <div class="text-center">
-    <blogModel>
-        @Model.Body
-    </blogModel>
-    <a asp-action="BlogView" asp-controller="Blog">Back</a>
+    <div class="d-block p-2 bg-primary text-white fs-4">
+        <p>@Model.Title</p>
+    </div>
+    <div class="btn btn-Light col-6 align-middle text-wrap">
+        <blogModel>
+            @Model.Body
+        </blogModel>
+        <br />
+    </div>
+    <br />
+    <br />
+    <a asp-action="BlogView" asp-controller="Blog" class="btn btn-secondary">Back</a>
 </div>
