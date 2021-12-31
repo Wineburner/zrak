@@ -57,7 +57,7 @@ namespace zrak.Test.Builders
             };
             var builder = new BlogBuilder();
 
-            var result = builder.BuildId(initModel);
+            var result = builder.Build(initModel);
 
             Assert.Equal(id, result.Id.ToString());
             Assert.Equal(title, result.Title);
