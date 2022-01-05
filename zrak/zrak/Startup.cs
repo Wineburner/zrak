@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using zrak.Builders;
 using zrak.Services;
 using zrak.Stores;
+using zrak.Mappers;
 
 namespace zrak
 {
@@ -21,11 +22,15 @@ namespace zrak
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IBlogStore>(new InMemoryStore());
+            var memoryStore = new InMemoryStore();
+            services.AddSingleton<IBlogStore>(memoryStore);
+            services.AddSingleton<ITicTacToeStore>(memoryStore);
             services.AddSingleton<IBlogService, BlogService>();
             services.AddSingleton<IHelloService, HelloService>();
             services.AddSingleton<ITicTacToeService, TicTacToeService>();
             services.AddSingleton<IBlogBuilder, BlogBuilder>();
+            services.AddSingleton<ITicTacToeBuilder, TicTacToeBuilder>();
+            services.AddSingleton<ITicTacToeIndexMapper, TicTacToeIndexMapper>();
             services.AddControllersWithViews();
         }
 

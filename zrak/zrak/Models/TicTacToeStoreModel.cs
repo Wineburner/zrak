@@ -1,9 +1,13 @@
-﻿namespace zrak.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace zrak.Models
 {
-    public class TicTacToeModel
+    public class TicTacToeStoreModel
     {
-        public string Board { get; set; }
-        public string Id { get; set; }
+        public Guid? Id { get; set; }
         public int XWins { get; set; }
         public int OWins { get; set; }
         public int Ties { get; set; }
