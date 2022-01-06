@@ -7,6 +7,8 @@ using zrak.Mappers;
 using Moq;
 using System.Linq;
 using System.Collections.Generic;
+using static zrak.Enumerators.TicTacToeEnumerator;
+using zrak.Enumerators;
 
 namespace zrak.Test
 {
@@ -15,10 +17,10 @@ namespace zrak.Test
         [Fact]
         public void Should_Say_Tic_Tac_Toe_Successful()
         {
-            var boardSpaces = new string[,] {
-                { " ", " ", " " },
-                { " ", " ", " " },
-                { " ", " ", " " } };
+            var boardSpaces = new SpaceState[,] {
+                {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty} };
             var turn = 'X';
             var xwin = 0;
             var owin = 0;
@@ -42,7 +44,8 @@ namespace zrak.Test
             var mockBuilder = new Mock<ITicTacToeBuilder>();
             mockBuilder.Setup(x => x.Build(initModel)).Returns(correctModel);
             var mockMapper = new Mock<ITicTacToeIndexMapper>();
-            var service = new TicTacToeService(mockMemory.Object, mockBuilder.Object, mockMapper.Object);
+            var mockEnumerator = new Mock<ITicTacToeEnumerator>();
+            var service = new TicTacToeService(mockMemory.Object, mockBuilder.Object, mockMapper.Object, mockEnumerator.Object);
 
             var result = service.GetGame();
 

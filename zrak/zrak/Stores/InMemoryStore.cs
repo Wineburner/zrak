@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using zrak.Models;
+using zrak.Enumerators;
+using static zrak.Enumerators.TicTacToeEnumerator;
 
 namespace zrak.Stores
 {
@@ -10,6 +11,7 @@ namespace zrak.Stores
     {
         private readonly List<BlogStoreModel> _blogStoreModel;
         private readonly List<TicTacToeStoreModel> _ticTacToeStoreModel;
+        private readonly List<TicTacToeEnumerator> _ticTacToeEnumator;
 
         public InMemoryStore() 
         {
@@ -69,11 +71,11 @@ namespace zrak.Stores
             _ticTacToeStoreModel.Add(new TicTacToeStoreModel
             {
                 Id = Guid.NewGuid(),
-                BoardSpaces = new string[3, 3]
+                BoardSpaces = new SpaceState[3, 3]
                 {
-                    {" ", " ", " "},
-                    {" ", " ", " "},
-                    {" ", " ", " "}
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty}
                 },
                 Turn = 'X',
                 XWins = 0,

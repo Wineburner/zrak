@@ -1,4 +1,6 @@
 ﻿using zrak.Models;
+using zrak.Enumerators;
+using static zrak.Enumerators.TicTacToeEnumerator;
 
 namespace zrak.Services
 {
@@ -12,5 +14,6 @@ namespace zrak.Services
         string ResetGame(string id);
         void ChangeSpace(int space, string id);
         void RowCheck(string id);
+        GameState GetGameState(SpaceState[,] board);
     }
 }

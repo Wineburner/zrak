@@ -2,22 +2,27 @@
 using zrak.Stores;
 using zrak.Builders;
 using zrak.Mappers;
+using zrak.Enumerators;
 using System.Linq;
 using System;
+using static zrak.Enumerators.TicTacToeEnumerator;
 
 namespace zrak.Services
 {
+
     public class TicTacToeService : ITicTacToeService
     {
         private readonly ITicTacToeStore _ticTacToeStore;
         private readonly ITicTacToeBuilder _ticTacToeBuilder;
         private readonly ITicTacToeIndexMapper _ticTacToeIndexMapper;
+        private readonly ITicTacToeEnumerator _ticTacToeEnumerator;
 
-        public TicTacToeService(ITicTacToeStore ticTacToeStore, ITicTacToeBuilder ticTacToeBuilder, ITicTacToeIndexMapper ticTacToeIndexMapper)
+        public TicTacToeService(ITicTacToeStore ticTacToeStore, ITicTacToeBuilder ticTacToeBuilder, ITicTacToeIndexMapper ticTacToeIndexMapper, ITicTacToeEnumerator ticTacToeEnumerator)
         {
             _ticTacToeStore = ticTacToeStore;
             _ticTacToeBuilder = ticTacToeBuilder;
             _ticTacToeIndexMapper = ticTacToeIndexMapper;
+            _ticTacToeEnumerator = ticTacToeEnumerator;
         }
         public TicTacToeListModel GetGame()
         {
@@ -47,11 +52,11 @@ namespace zrak.Services
         {
             var ticTacToeStore = _ticTacToeStore.ReadGame(Guid.Parse(id));
             ticTacToeStore.Id = Guid.NewGuid();
-            ticTacToeStore.BoardSpaces = new string[3, 3]
+            ticTacToeStore.BoardSpaces = new SpaceState[3, 3]
                 {
-                    {" ", " ", " "},
-                    {" ", " ", " "},
-                    {" ", " ", " "}
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty}
                 };
             ticTacToeStore.Turn = 'X';
             ticTacToeStore.XWins = 0;
@@ -65,8 +70,9 @@ namespace zrak.Services
         {
             var (cordOne, cordTwo) = _ticTacToeIndexMapper.Map(space);
             var ticTacToeStore = _ticTacToeStore.ReadGame(Guid.Parse(id));
-            if (ticTacToeStore.BoardSpaces[cordOne, cordTwo] != "X" && ticTacToeStore.BoardSpaces[cordOne, cordTwo] != "O") {
-                ticTacToeStore.BoardSpaces[cordOne, cordTwo] = ticTacToeStore.Turn.ToString();
+            if (ticTacToeStore.BoardSpaces[cordOne, cordTwo] != SpaceState.X && ticTacToeStore.BoardSpaces[cordOne, cordTwo] != SpaceState.O) {
+                ticTacToeStore.BoardSpaces[cordOne, cordTwo] = ticTacToeStore.Turn == 'X' ? SpaceState.X : SpaceState.O;
+
                 if (ticTacToeStore.Turn == 'X')
                 {
                     ticTacToeStore.Turn = 'O';
@@ -76,49 +82,96 @@ namespace zrak.Services
                     ticTacToeStore.Turn = 'X';
                 }
             }
-            _ticTacToeIndexMapper.RowCheck(ticTacToeStore.BoardSpaces);
+            GetGameState(ticTacToeStore.BoardSpaces);
             _ticTacToeStore.UpdateGame(ticTacToeStore);
         }
 
         public void RowCheck(string id)
         {
             var ticTacToeStore = _ticTacToeStore.ReadGame(Guid.Parse(id));
-            var result = _ticTacToeIndexMapper.RowCheck(ticTacToeStore.BoardSpaces);
+            var result = GetGameState(ticTacToeStore.BoardSpaces);
 
-            if (result == 'X')
+            if (result == GameState.XWins)
             {
                 ticTacToeStore.XWins++;
-                ticTacToeStore.BoardSpaces = new string[3, 3]
+                ticTacToeStore.BoardSpaces = new SpaceState[3, 3]
                 {
-                    {" ", " ", " "},
-                    {" ", " ", " "},
-                    {" ", " ", " "}
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty}
                 };
             }
 
-            else if (result == 'O')
+            else if (result == GameState.OWins)
             {
                 ticTacToeStore.OWins++;
-                ticTacToeStore.BoardSpaces = new string[3, 3]
+                ticTacToeStore.BoardSpaces = new SpaceState[3, 3]
                 {
-                    {" ", " ", " "},
-                    {" ", " ", " "},
-                    {" ", " ", " "}
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty}
                 };
             }
 
-            else if (result == 'T') 
+            else if (result == GameState.Tie) 
             {
                 ticTacToeStore.Ties++;
-                ticTacToeStore.BoardSpaces = new string[3, 3]
+                ticTacToeStore.BoardSpaces = new SpaceState[3, 3]
                 {
-                    {" ", " ", " "},
-                    {" ", " ", " "},
-                    {" ", " ", " "}
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty}
                 };
             }
 
             _ticTacToeStore.UpdateGame(ticTacToeStore);
+        }
+
+        public GameState GetGameState(SpaceState[,] board)
+        {
+
+            if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[0, 1] &&  board[0, 1] == board[0, 2])
+            {
+                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+            else if (board[1, 0] != SpaceState.Empty && board[1, 0] == board[1, 1] &&  board [1, 1] == board[1, 2])
+            {
+                return board[1, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+            else if (board[2, 0] != SpaceState.Empty && board[2, 0] == board[2, 1] && board[2, 1] == board[2, 2])
+            {
+                return board[2, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+            else if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[1, 0] && board[1, 0] == board[2, 0])
+            {
+                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+            else if (board[0, 1] != SpaceState.Empty && board[0, 1] == board[1, 1]  && board[1, 1] == board[2, 1])
+            {
+                return board[0, 1] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+            else if (board[0, 2] != SpaceState.Empty && board[0, 2] == board[1, 2] && board[1, 2] == board[2, 2])
+            {
+                return board[0, 2] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+            else if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2])
+            {
+                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+            else if (board[0, 2] != SpaceState.Empty && board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0])
+            {
+                return board[0, 2] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+            else if (board[0, 0] != SpaceState.Empty && board[0, 1] != SpaceState.Empty &&
+                     board[0, 2] != SpaceState.Empty && board[1, 0] != SpaceState.Empty &&
+                     board[1, 1] != SpaceState.Empty && board[1, 2] != SpaceState.Empty &&
+                     board[2, 0] != SpaceState.Empty && board[2, 1] != SpaceState.Empty &&
+                     board[2, 2] != SpaceState.Empty)
+            {
+                return GameState.Tie;
+            }
+
+            return GameState.Running;
         }
     }
 }
