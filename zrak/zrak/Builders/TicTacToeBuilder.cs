@@ -1,21 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using zrak.Models;
+using zrak.Enumerators;
+using zrak.Mappers;
 
 namespace zrak.Builders
 {
     public class TicTacToeBuilder : ITicTacToeBuilder
     {
+        private readonly ITicTacToeSpaceMapper _ticTacToeSpaceMapper;
+
+        public TicTacToeBuilder(ITicTacToeSpaceMapper ticTacToeSpaceMapper)
+        {
+            _ticTacToeSpaceMapper = ticTacToeSpaceMapper;
+        }
+
         public TicTacToeStoreModel Build(TicTacToeModel ticTacToeModel)
         {
             if (ticTacToeModel.Id != null)
-            {
+            { 
                 return new TicTacToeStoreModel
                 {
                     Id = Guid.Parse(ticTacToeModel.Id),
-                    BoardSpaces = ticTacToeModel.BoardSpaces,
+                    BoardSpaces = Build(ticTacToeModel.BoardSpaces),
                     Turn = ticTacToeModel.Turn,
                     XWins = ticTacToeModel.XWins,
                     OWins = ticTacToeModel.OWins,
@@ -25,7 +31,7 @@ namespace zrak.Builders
 
             return new TicTacToeStoreModel
             {
-                BoardSpaces = ticTacToeModel.BoardSpaces,
+                BoardSpaces = Build(ticTacToeModel.BoardSpaces),
                 Turn = ticTacToeModel.Turn,
                 XWins = ticTacToeModel.XWins,
                 OWins = ticTacToeModel.OWins,
@@ -37,12 +43,49 @@ namespace zrak.Builders
             return new TicTacToeModel
             {
                 Id = ticTacToeStoreModel.Id.ToString(),
-                BoardSpaces = ticTacToeStoreModel.BoardSpaces,
+                BoardSpaces = Build(ticTacToeStoreModel.BoardSpaces),
                 Turn = ticTacToeStoreModel.Turn,
                 XWins = ticTacToeStoreModel.XWins,
                 OWins = ticTacToeStoreModel.OWins,
                 Ties = ticTacToeStoreModel.Ties
             };
+        }
+
+        public SpaceState[,] Build(string[,] str)
+        {
+            SpaceState[,] converted = new SpaceState[3, 3] { 
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
+                    {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty} };
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    converted[i, j] = _ticTacToeSpaceMapper.SpaceMap(str[i, j]);
+                }
+            }
+
+            return converted;
+        }
+
+        public string[,] Build(SpaceState[,] state)
+        {
+            string[,] converted = new string[3, 3]{
+                    {" ", " ", " "},
+                    {" ", " ", " "},
+                    {" ", " ", " "} };
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    converted[i, j] = _ticTacToeSpaceMapper.SpaceMap(state[i, j]);
+                }
+            }
+
+            return converted;
         }
     }
 }

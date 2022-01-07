@@ -1,4 +1,5 @@
 ﻿using zrak.Models;
+using zrak.Enumerators;
 
 namespace zrak.Builders
 {
@@ -6,5 +7,8 @@ namespace zrak.Builders
     {
         TicTacToeStoreModel Build(TicTacToeModel ticTacToeModel);
         TicTacToeModel Build(TicTacToeStoreModel ticTacToeStoreModel);
+
+        SpaceState[,] Build(string[,] str);
+        string[,] Build(SpaceState[,] state);
     }
 }

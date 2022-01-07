@@ -1,5 +1,5 @@
 ﻿using System;
-using static zrak.Enumerators.TicTacToeEnumerator;
+using zrak.Enumerators;
 
 namespace zrak.Models
 {

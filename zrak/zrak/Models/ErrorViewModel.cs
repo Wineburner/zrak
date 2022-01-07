@@ -1,5 +1,3 @@
-using System;
-
 namespace zrak.Models
 {
     public class ErrorViewModel

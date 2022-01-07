@@ -4,10 +4,10 @@ using zrak.Builders;
 using zrak.Stores;
 using zrak.Models;
 using zrak.Mappers;
+using zrak.Factory;
 using Moq;
 using System.Linq;
 using System.Collections.Generic;
-using static zrak.Enumerators.TicTacToeEnumerator;
 using zrak.Enumerators;
 
 namespace zrak.Test
@@ -24,6 +24,12 @@ namespace zrak.Test
             var turn = 'X';
             var xwin = 0;
             var owin = 0;
+            var unconvertedBoardSpaces = new string[,]
+            {
+               {" ", " ", " "},
+                {" ", " ", " "},
+                {" ", " ", " "}
+            };
             var initModel = new TicTacToeStoreModel
             {
                 BoardSpaces = boardSpaces,
@@ -34,7 +40,7 @@ namespace zrak.Test
             };
             var correctModel = new TicTacToeModel
             {
-                BoardSpaces = boardSpaces,
+                BoardSpaces = unconvertedBoardSpaces,
                 Turn = turn,
                 XWins = xwin,
                 OWins = owin
@@ -44,17 +50,14 @@ namespace zrak.Test
             var mockBuilder = new Mock<ITicTacToeBuilder>();
             mockBuilder.Setup(x => x.Build(initModel)).Returns(correctModel);
             var mockMapper = new Mock<ITicTacToeIndexMapper>();
-            var mockEnumerator = new Mock<ITicTacToeEnumerator>();
-            var service = new TicTacToeService(mockMemory.Object, mockBuilder.Object, mockMapper.Object, mockEnumerator.Object);
+            var mockFactory = new Mock<ITicTacToeModelFactory>();
+            var service = new TicTacToeService(mockMemory.Object, mockBuilder.Object, mockMapper.Object, mockFactory.Object);
 
             var result = service.GetGame();
 
             Assert.NotEmpty(result.Games);
-            Assert.Equal(boardSpaces, result.Games.ToList()[0].BoardSpaces);
+            Assert.Equal(unconvertedBoardSpaces, result.Games.ToList()[0].BoardSpaces);
             Assert.Equal(turn, result.Games.ToList()[0].Turn);
-
-
-
         }
     }
 }

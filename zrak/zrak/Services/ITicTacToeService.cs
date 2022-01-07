@@ -1,6 +1,5 @@
 ﻿using zrak.Models;
 using zrak.Enumerators;
-using static zrak.Enumerators.TicTacToeEnumerator;
 
 namespace zrak.Services
 {
@@ -8,7 +7,7 @@ namespace zrak.Services
     {
         TicTacToeListModel GetGame();
 
-        void CreateGame(TicTacToeModel ticTacToeModel);
+        void CreateGame();
         TicTacToeModel OpenGame(string id);
         void DeleteGame(string id);
         string ResetGame(string id);

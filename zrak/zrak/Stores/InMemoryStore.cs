@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using zrak.Models;
 using zrak.Enumerators;
-using static zrak.Enumerators.TicTacToeEnumerator;
 
 namespace zrak.Stores
 {
@@ -11,7 +10,6 @@ namespace zrak.Stores
     {
         private readonly List<BlogStoreModel> _blogStoreModel;
         private readonly List<TicTacToeStoreModel> _ticTacToeStoreModel;
-        private readonly List<TicTacToeEnumerator> _ticTacToeEnumator;
 
         public InMemoryStore() 
         {

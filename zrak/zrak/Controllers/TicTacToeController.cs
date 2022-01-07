@@ -20,8 +20,7 @@ namespace zrak.Controllers
 
         public IActionResult CreateNewGame() 
         {
-            TicTacToeModel game = new TicTacToeModel();
-            _ticTacToeService.CreateGame(game);
+            _ticTacToeService.CreateGame();
             return View(TicTacToeView());
         }
 

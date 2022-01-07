@@ -7,7 +7,7 @@ using zrak.Builders;
 using zrak.Services;
 using zrak.Stores;
 using zrak.Mappers;
-using zrak.Enumerators;
+using zrak.Factory;
 
 namespace zrak
 {
@@ -32,7 +32,8 @@ namespace zrak
             services.AddSingleton<IBlogBuilder, BlogBuilder>();
             services.AddSingleton<ITicTacToeBuilder, TicTacToeBuilder>();
             services.AddSingleton<ITicTacToeIndexMapper, TicTacToeIndexMapper>();
-            services.AddSingleton<ITicTacToeEnumerator, TicTacToeEnumerator>();
+            services.AddSingleton<ITicTacToeSpaceMapper, TicTacToeSpaceMapper>();
+            services.AddSingleton<ITicTacToeModelFactory, TicTacToeModelFactory>();
             services.AddControllersWithViews();
         }
 

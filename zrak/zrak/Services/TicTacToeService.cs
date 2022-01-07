@@ -3,9 +3,9 @@ using zrak.Stores;
 using zrak.Builders;
 using zrak.Mappers;
 using zrak.Enumerators;
+using zrak.Factory;
 using System.Linq;
 using System;
-using static zrak.Enumerators.TicTacToeEnumerator;
 
 namespace zrak.Services
 {
@@ -15,14 +15,14 @@ namespace zrak.Services
         private readonly ITicTacToeStore _ticTacToeStore;
         private readonly ITicTacToeBuilder _ticTacToeBuilder;
         private readonly ITicTacToeIndexMapper _ticTacToeIndexMapper;
-        private readonly ITicTacToeEnumerator _ticTacToeEnumerator;
+        private readonly ITicTacToeModelFactory _ticTacToeModelFactory;
 
-        public TicTacToeService(ITicTacToeStore ticTacToeStore, ITicTacToeBuilder ticTacToeBuilder, ITicTacToeIndexMapper ticTacToeIndexMapper, ITicTacToeEnumerator ticTacToeEnumerator)
+        public TicTacToeService(ITicTacToeStore ticTacToeStore, ITicTacToeBuilder ticTacToeBuilder, ITicTacToeIndexMapper ticTacToeIndexMapper, ITicTacToeModelFactory ticTacToeModelFactory)
         {
             _ticTacToeStore = ticTacToeStore;
             _ticTacToeBuilder = ticTacToeBuilder;
             _ticTacToeIndexMapper = ticTacToeIndexMapper;
-            _ticTacToeEnumerator = ticTacToeEnumerator;
+            _ticTacToeModelFactory = ticTacToeModelFactory;
         }
         public TicTacToeListModel GetGame()
         {
@@ -32,8 +32,9 @@ namespace zrak.Services
             };
         }
 
-        public void CreateGame(TicTacToeModel ticTacToeModel)
+        public void CreateGame()
         {
+            var ticTacToeModel = _ticTacToeModelFactory.NewModel();
             _ticTacToeStore.CreateGame(_ticTacToeBuilder.Build(ticTacToeModel));
         }
 
