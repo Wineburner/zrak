@@ -1,0 +1,23 @@
+﻿@model zrak.Models.TicTacToeModel
+<div>
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="0" asp-route-id="@Model.Id">@Model.BoardSpaces[0, 0]</a>
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="1" asp-route-id="@Model.Id">@Model.BoardSpaces[0, 1]</a>
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="2" asp-route-id="@Model.Id">@Model.BoardSpaces[0, 2]</a>
+    <br />
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="3" asp-route-id="@Model.Id">@Model.BoardSpaces[1, 0]</a>
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="4" asp-route-id="@Model.Id">@Model.BoardSpaces[1, 1]</a>
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="5" asp-route-id="@Model.Id">@Model.BoardSpaces[1, 2]</a>
+    <br />
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="6" asp-route-id="@Model.Id">@Model.BoardSpaces[2, 0]</a>
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="7" asp-route-id="@Model.Id">@Model.BoardSpaces[2, 1]</a>
+    <a style="height:45px;width:40px" asp-action="ChangeSpace" asp-controller="TicTacToe" class="btn btn-secondary" asp-route-space="8" asp-route-id="@Model.Id">@Model.BoardSpaces[2, 2]</a>
+    <br />
+    X Wins: @Model.XWins
+    <br />
+    O Wins: @Model.OWins
+    <br />
+    Ties: @Model.Ties
+    <br />
+    <a c>Back</a>
+    <a asp-action="ResetGame" asp-controller="TicTacToe" asp-route-id="@Model.Id">Reset</a>
+</div>

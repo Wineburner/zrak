@@ -1,10 +1,20 @@
-﻿@model zrak.Models.TicTacToeModel
+﻿@model zrak.Models.TicTacToeListModel
 @{
     ViewData["Title"] = "Tic-Tac-Toe";
 }
 
-<div class="text-center">
-    <TicTacToeModel>
-        @Model.Board
-    </TicTacToeModel>
-</div>
+
+<a asp-action="CreateNewGame" asp-controller="TicTacToe">New Game</a>
+@if (Model.Games != null)
+{
+    <ul style="list-style: none;" class="list-group">
+        @foreach (var x in @Model.Games)
+        {
+            <li class="list-group-item">
+                <a asp-action="OpenGame" asp-controller="TicTacToe" asp-route-id="@x.Id">@x.Id</a>
+                <a asp-action="DeleteGame" asp-controller="TicTacToe" asp-route-id="@x.Id">Delete</a>
+            </li>
+        }
+    </ul>
+}
+
