@@ -26,10 +26,24 @@ namespace zrak.Services
         }
         public TicTacToeListModel GetGame()
         {
-            return new TicTacToeListModel
+            var ticTacToeListModel = new TicTacToeListModel();
+
+            ticTacToeListModel.Games = _ticTacToeStore.GetAllGames().Select(x => _ticTacToeBuilder.Build(x));
+            var totalXWins = 0;
+            var totalOWins = 0;
+            var totalTies = 0;
+
+            foreach (var games in ticTacToeListModel.Games) 
             {
-                Games = _ticTacToeStore.GetAllGames().Select(x => _ticTacToeBuilder.Build(x))
-            };
+                totalXWins += games.XWins;
+                totalOWins += games.OWins;
+                totalTies += games.Ties;
+            }
+
+            ticTacToeListModel.TotalXWins = totalXWins;
+            ticTacToeListModel.TotalOWins = totalOWins;
+            ticTacToeListModel.TotalTies = totalTies;
+            return ticTacToeListModel;
         }
 
         public void CreateGame()

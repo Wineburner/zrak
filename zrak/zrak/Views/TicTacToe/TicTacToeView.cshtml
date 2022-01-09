@@ -5,6 +5,11 @@
 
 <div class="text-center">
     <a asp-action="CreateNewGame" asp-controller="TicTacToe" class="btn btn-primary" style="margin-bottom: 10px; margin-top: 10px;">New Game</a>
+    <div class="text-white">
+        <a class="btn btn-secondary" style="margin-bottom: 10px; margin-top: 10px;">Total X Wins: @Model.TotalXWins</a>
+        <a class="btn btn-secondary" style="margin-bottom: 10px; margin-top: 10px;">Total O Wins: @Model.TotalOWins</a>
+        <a class="btn btn-secondary" style="margin-bottom: 10px; margin-top: 10px;">Total Ties: @Model.TotalTies</a>
+    </div>
     @if (Model.Games != null)
     {
         <ul style="list-style: none;" class="list-group">
