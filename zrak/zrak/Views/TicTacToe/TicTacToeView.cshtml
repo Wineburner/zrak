@@ -3,18 +3,19 @@
     ViewData["Title"] = "Tic-Tac-Toe";
 }
 
-
-<a asp-action="CreateNewGame" asp-controller="TicTacToe">New Game</a>
-@if (Model.Games != null)
-{
-    <ul style="list-style: none;" class="list-group">
-        @foreach (var x in @Model.Games)
-        {
-            <li class="list-group-item">
-                <a asp-action="OpenGame" asp-controller="TicTacToe" asp-route-id="@x.Id">@x.Id</a>
-                <a asp-action="DeleteGame" asp-controller="TicTacToe" asp-route-id="@x.Id">Delete</a>
-            </li>
-        }
-    </ul>
-}
+<div class="text-center">
+    <a asp-action="CreateNewGame" asp-controller="TicTacToe" class="btn btn-primary" style="margin-bottom: 10px; margin-top: 10px;">New Game</a>
+    @if (Model.Games != null)
+    {
+        <ul style="list-style: none;" class="list-group">
+            @foreach (var x in @Model.Games)
+            {
+                <li class="list-group-item">
+                    <a asp-action="OpenGame" asp-controller="TicTacToe" asp-route-id="@x.Id" class="btn btn-primary gap-2 col-6 text-truncate">@x.Id</a>
+                    <a asp-action="DeleteGame" asp-controller="TicTacToe" asp-route-id="@x.Id" class="btn btn-danger">Delete</a>
+                </li>
+            }
+        </ul>
+    }
+</div>
 
