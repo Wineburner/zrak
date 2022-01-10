@@ -9,19 +9,20 @@
 <div class="text-center">
     <blogListModel>
         <a asp-action="AddPost" asp-controller="Blog" class="btn btn-primary">Add Post</a>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Back</a>
         <hr />
 
         @if (Model.Blogs != null)
         {
             <ul style="list-style: none;" class="list-group">
-            @foreach (var x in @Model.Blogs)
-            {
-    <li class="list-group-item">
-        <a asp-action="ViewPost" asp-controller="Blog" asp-route-id="@x.Id" class="btn btn-primary gap-2 col-6 text-truncate"> @x.Title</a>
-        <a asp-action="EditPost" asp-controller="Blog" asp-route-id="@x.Id" class="btn btn-success">Edit</a>
-        <a asp-action="UserCheckDeletePost" asp-controller="Blog" asp-route-id="@x.Id" class="btn btn-danger">Delete</a>
-    </li>
-            }
+                @foreach (var x in @Model.Blogs)
+                {
+                    <li class="list-group-item">
+                        <a asp-action="ViewPost" asp-controller="Blog" asp-route-id="@x.Id" class="btn btn-primary gap-2 col-6 text-truncate"> @x.Title</a>
+                        <a asp-action="EditPost" asp-controller="Blog" asp-route-id="@x.Id" class="btn btn-success">Edit</a>
+                        <a asp-action="UserCheckDeletePost" asp-controller="Blog" asp-route-id="@x.Id" class="btn btn-danger">Delete</a>
+                    </li>
+                }
             </ul>
         }
     </blogListModel>
