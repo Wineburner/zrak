@@ -1,5 +1,5 @@
 ## zrak
-A C# Razor/MVC project made to practice MVC/Razor.
+A C# Razor/MVC project that includes a blog and Tic-Tac-Toe.
 
 # How to Run
 Open the command line, move to the zrak repo folder, and type
@@ -7,9 +7,8 @@ Open the command line, move to the zrak repo folder, and type
 dotnet run --project zrak/zrak/zrak.csproj
 
 # Current Features
-Currently the program only has links to work-in-progress pages.
+Currently the program has two pages, the first is a blog, where the user can add, edit, or delete any post that have a title and body. The second is a page for Tic-Tac-Toe, where the user can start, reset, or delete mutiple seperate games, with a total counter for Xs, Os, or Ties.
 
 # Planned Features
-- fully working Tic-Tac-Toe game with ai and two player support off or on-line.
-- fully working Blog page that can edit, add, and remove posts.
+- replace the In-Memory-Storage with a database using MongoDB.
 
