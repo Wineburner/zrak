@@ -23,9 +23,9 @@ namespace zrak
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var memoryStore = new InMemoryStore();
-            services.AddSingleton<IBlogStore>(memoryStore);
-            services.AddSingleton<ITicTacToeStore>(memoryStore);
+            var mongoStore = new MongoStore();
+            services.AddSingleton<IBlogStore>(mongoStore);
+            services.AddSingleton<ITicTacToeStore>(mongoStore);
             services.AddSingleton<IBlogService, BlogService>();
             services.AddSingleton<IHelloService, HelloService>();
             services.AddSingleton<ITicTacToeService, TicTacToeService>();

@@ -1,4 +1,5 @@
-﻿using zrak.Models;
+﻿using MongoDB.Bson;
+using zrak.Models;
 
 namespace zrak.Builders
 {
@@ -6,5 +7,6 @@ namespace zrak.Builders
     {
         BlogStoreModel Build(BlogModel blogModel);
         BlogModel Build(BlogStoreModel blogStoreModel);
+        BlogStoreModel Build(BsonDocument bsonDocument);
     }
 }

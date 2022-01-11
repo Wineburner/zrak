@@ -6,7 +6,7 @@ using zrak.Enumerators;
 
 namespace zrak.Stores
 {
-    public class InMemoryStore : IBlogStore, ITicTacToeStore
+    public class InMemoryStore
     {
         private readonly List<BlogStoreModel> _blogStoreModel;
         private readonly List<TicTacToeStoreModel> _ticTacToeStoreModel;

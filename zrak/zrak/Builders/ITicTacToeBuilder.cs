@@ -1,5 +1,6 @@
 ﻿using zrak.Models;
 using zrak.Enumerators;
+using MongoDB.Bson;
 
 namespace zrak.Builders
 {
@@ -10,5 +11,7 @@ namespace zrak.Builders
 
         SpaceState[,] Build(string[,] str);
         string[,] Build(SpaceState[,] state);
+
+        TicTacToeStoreModel Build(BsonDocument bsonDocument);
     }
 }

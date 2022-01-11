@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using zrak.Models;
 
 namespace zrak.Builders
@@ -31,6 +32,25 @@ namespace zrak.Builders
                 Id = blogStoreModel.Id.ToString(),
                 Title = blogStoreModel.Title,
                 Body = blogStoreModel.Body
+            };
+        }
+
+        public BlogStoreModel Build(BsonDocument bsonDocument)
+        {
+            if (bsonDocument["ClientId"].ToString() != null)
+            {
+                return new BlogStoreModel
+                {
+                    Id = Guid.Parse(bsonDocument["ClientId"].ToString()),
+                    Title = bsonDocument["Title"].ToString(),
+                    Body = bsonDocument["Body"].ToString(),
+                };
+            }
+
+            return new BlogStoreModel
+            {
+                Title = bsonDocument["Title"].ToString(),
+                Body = bsonDocument["Body"].ToString(),
             };
         }
     }
