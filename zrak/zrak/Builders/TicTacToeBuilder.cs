@@ -20,7 +20,7 @@ namespace zrak.Builders
             { 
                 return new TicTacToeStoreModel
                 {
-                    Id = Guid.Parse(ticTacToeModel.Id),
+                    TicTacToeId = Guid.Parse(ticTacToeModel.Id),
                     BoardSpaces = Build(ticTacToeModel.BoardSpaces),
                     Turn = ticTacToeModel.Turn,
                     XWins = ticTacToeModel.XWins,
@@ -42,7 +42,7 @@ namespace zrak.Builders
         {
             return new TicTacToeModel
             {
-                Id = ticTacToeStoreModel.Id.ToString(),
+                Id = ticTacToeStoreModel.TicTacToeId.ToString(),
                 BoardSpaces = Build(ticTacToeStoreModel.BoardSpaces),
                 Turn = ticTacToeStoreModel.Turn,
                 XWins = ticTacToeStoreModel.XWins,

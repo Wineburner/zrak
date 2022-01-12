@@ -26,9 +26,10 @@ namespace zrak.Services
         }
         public TicTacToeListModel GetGame()
         {
-            var ticTacToeListModel = new TicTacToeListModel();
-
-            ticTacToeListModel.Games = _ticTacToeStore.GetAllGames().Select(x => _ticTacToeBuilder.Build(x));
+            var ticTacToeListModel = new TicTacToeListModel
+            {
+                Games = _ticTacToeStore.GetAllGames().Select(x => _ticTacToeBuilder.Build(x))
+            };
             var totalXWins = 0;
             var totalOWins = 0;
             var totalTies = 0;
@@ -66,7 +67,7 @@ namespace zrak.Services
         public string ResetGame(string id) 
         {
             var ticTacToeStore = _ticTacToeStore.ReadGame(Guid.Parse(id));
-            ticTacToeStore.Id = Guid.NewGuid();
+            ticTacToeStore.TicTacToeId = Guid.NewGuid();
             ticTacToeStore.BoardSpaces = new SpaceState[3, 3]
                 {
                     {SpaceState.Empty, SpaceState.Empty, SpaceState.Empty},
@@ -78,7 +79,7 @@ namespace zrak.Services
             ticTacToeStore.OWins = 0;
             ticTacToeStore.Ties = 0;
             _ticTacToeStore.UpdateGame(ticTacToeStore);
-            return ticTacToeStore.Id.ToString();
+            return ticTacToeStore.TicTacToeId.ToString();
         }
 
         public void ChangeSpace(int space, string id)
