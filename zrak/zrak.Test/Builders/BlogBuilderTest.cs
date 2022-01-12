@@ -58,7 +58,7 @@ namespace zrak.Test.Builders
 
             var result = builder.Build(initModel);
 
-            Assert.Equal(id, result.Id.ToString());
+            Assert.Equal(id, result.BlogId.ToString());
             Assert.Equal(title, result.Title);
             Assert.Equal(body, result.Body);
         }
