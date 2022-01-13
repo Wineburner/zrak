@@ -11,7 +11,7 @@ namespace zrak.Builders
             {
                 return new BlogStoreModel
                 {
-                    Id = Guid.Parse(blogModel.Id),
+                    BlogId = Guid.Parse(blogModel.Id),
                     Title = blogModel.Title,
                     Body = blogModel.Body,
                 };
@@ -28,7 +28,7 @@ namespace zrak.Builders
         {
             return new BlogModel
             {
-                Id = blogStoreModel.Id.ToString(),
+                Id = blogStoreModel.BlogId.ToString(),
                 Title = blogStoreModel.Title,
                 Body = blogStoreModel.Body
             };

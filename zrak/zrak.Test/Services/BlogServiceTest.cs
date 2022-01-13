@@ -79,7 +79,7 @@ namespace zrak.Test
             };
             var correctModel = new BlogStoreModel
             {
-                Id = Guid.Parse(id),
+                BlogId = Guid.Parse(id),
                 Title = title,
                 Body = body
             };
@@ -107,7 +107,7 @@ namespace zrak.Test
             };
             var correctModel = new BlogStoreModel
             {
-                Id = Guid.Parse(id),
+                BlogId = Guid.Parse(id),
                 Title = title,
                 Body = body
             };
