@@ -40,7 +40,7 @@ namespace zrak.Builders
         }
         public TicTacToeModel Build(TicTacToeStoreModel ticTacToeStoreModel) 
         {
-            return new TicTacToeModel
+           return new TicTacToeModel
             {
                 Id = ticTacToeStoreModel.TicTacToeId.ToString(),
                 BoardSpaces = Build(ticTacToeStoreModel.BoardSpaces),

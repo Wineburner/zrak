@@ -62,8 +62,7 @@ namespace zrak.Stores
             var database = _dbClient.GetDatabase(DataBaseName);
             var collection = database.GetCollection<BlogStoreModel>(BlogCollectionName);
             var filter = Builders<BlogStoreModel>.Filter.Eq("BlogId", blogStoreModel.BlogId.ToString());
-            var update = Builders<BlogStoreModel>.Update.Set("BlogId", blogStoreModel.BlogId)
-                                                        .Set("Title", blogStoreModel.Title)
+            var update = Builders<BlogStoreModel>.Update.Set("Title", blogStoreModel.Title)
                                                         .Set("Body", blogStoreModel.Body);
 
             collection.UpdateOne(filter, update);
@@ -125,7 +124,7 @@ namespace zrak.Stores
         {
             var database = _dbClient.GetDatabase(DataBaseName);
             var collection = database.GetCollection<TicTacToeStoreModel>(GameCollectionName);
-            var filter = Builders<TicTacToeStoreModel>.Filter.Eq("TicTacToeId", ticTacToeStoreModel.TicTacToeId.ToString());
+            var filter = Builders<TicTacToeStoreModel>.Filter.Eq("Id", ticTacToeStoreModel.Id);
             var update = Builders<TicTacToeStoreModel>.Update.Set("TicTacToeId", ticTacToeStoreModel.TicTacToeId)
                                                              .Set("XWins", ticTacToeStoreModel.XWins)
                                                              .Set("OWins", ticTacToeStoreModel.OWins)

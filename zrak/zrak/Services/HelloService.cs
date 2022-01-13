@@ -8,7 +8,7 @@ namespace zrak.Services
         {
             return new HelloModel
             {
-                Greet = "Hello World"
+                Greet = "Zrak"
             };
         }
     }
