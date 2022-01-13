@@ -12,7 +12,7 @@ namespace zrak.Test
 
             var result = service.GetHello();
 
-            Assert.Equal("Hello World", result.Greet);
+            Assert.Equal("Zrak", result.Greet);
 
         }
     }
