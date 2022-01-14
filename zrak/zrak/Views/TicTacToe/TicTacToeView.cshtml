@@ -16,9 +16,9 @@
     <ul style="list-style: none; margin-top: 10px" class="list-group">
         @foreach (var x in @Model.Games)
         {
-        <li class="list-group-item" @(Model.GameCount++)>
+        <li class="list-group-item">
             <div class="text-white">
-                <a asp-action="OpenGame" asp-controller="TicTacToe" asp-route-id="@x.Id" class="btn btn-primary gap-2 col-4 text-truncate">Game @Model.GameCount</a>
+                <a asp-action="OpenGame" asp-controller="TicTacToe" asp-route-id="@x.Id" class="btn btn-primary gap-2 col-6 text-truncate">@x.Id</a>
                 <a asp-action="DeleteGame" asp-controller="TicTacToe" asp-route-id="@x.Id" class="btn btn-danger">Delete</a>
 
                 <a style="background-color: dimgrey; padding: 8px; vertical-align: middle; border-radius: 10px 0px 0px 10px; ">X Wins: @x.XWins</a>
