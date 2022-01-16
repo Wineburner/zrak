@@ -145,45 +145,53 @@ namespace zrak.Services
 
         public GameState GetGameState(SpaceState[,] board)
         {
-            if (board[0, 0] != SpaceState.Empty && board[0, 1] != SpaceState.Empty &&
+            if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[0, 1] && board[0, 1] == board[0, 2])
+            {
+                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+
+            else if (board[1, 0] != SpaceState.Empty && board[1, 0] == board[1, 1] && board[1, 1] == board[1, 2])
+            {
+                return board[1, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+
+            else if (board[2, 0] != SpaceState.Empty && board[2, 0] == board[2, 1] && board[2, 1] == board[2, 2])
+            {
+                return board[2, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+
+            else if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[1, 0] && board[1, 0] == board[2, 0])
+            {
+                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+
+            else if (board[0, 1] != SpaceState.Empty && board[0, 1] == board[1, 1] && board[1, 1] == board[2, 1])
+            {
+                return board[0, 1] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+
+            else if (board[0, 2] != SpaceState.Empty && board[0, 2] == board[1, 2] && board[1, 2] == board[2, 2])
+            {
+                return board[0, 2] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+
+            else if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2])
+            {
+                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+
+            else if (board[0, 2] != SpaceState.Empty && board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0])
+            {
+                return board[0, 2] == SpaceState.X ? GameState.XWins : GameState.OWins;
+            }
+
+            else if (board[0, 0] != SpaceState.Empty && board[0, 1] != SpaceState.Empty &&
                      board[0, 2] != SpaceState.Empty && board[1, 0] != SpaceState.Empty &&
                      board[1, 1] != SpaceState.Empty && board[1, 2] != SpaceState.Empty &&
                      board[2, 0] != SpaceState.Empty && board[2, 1] != SpaceState.Empty &&
                      board[2, 2] != SpaceState.Empty)
             {
                 return GameState.Tie;
-            }
-            else if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[0, 1] && board[0, 1] == board[0, 2])
-            {
-                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
-            }
-            else if (board[1, 0] != SpaceState.Empty && board[1, 0] == board[1, 1] && board[1, 1] == board[1, 2])
-            {
-                return board[1, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
-            }
-            else if (board[2, 0] != SpaceState.Empty && board[2, 0] == board[2, 1] && board[2, 1] == board[2, 2])
-            {
-                return board[2, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
-            }
-            else if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[1, 0] && board[1, 0] == board[2, 0])
-            {
-                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
-            }
-            else if (board[0, 1] != SpaceState.Empty && board[0, 1] == board[1, 1] && board[1, 1] == board[2, 1])
-            {
-                return board[0, 1] == SpaceState.X ? GameState.XWins : GameState.OWins;
-            }
-            else if (board[0, 2] != SpaceState.Empty && board[0, 2] == board[1, 2] && board[1, 2] == board[2, 2])
-            {
-                return board[0, 2] == SpaceState.X ? GameState.XWins : GameState.OWins;
-            }
-            else if (board[0, 0] != SpaceState.Empty && board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2])
-            {
-                return board[0, 0] == SpaceState.X ? GameState.XWins : GameState.OWins;
-            }
-            else if (board[0, 2] != SpaceState.Empty && board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0])
-            {
-                return board[0, 2] == SpaceState.X ? GameState.XWins : GameState.OWins;
             }
 
             return GameState.Running;
